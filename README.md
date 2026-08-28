@@ -1,54 +1,397 @@
-# Heart-Disease-Prediction ❤️
+# ❤️ Heart Disease Prediction Using Logistic Regression
 
-This repository contains code for a machine learning model that predicts the likelihood of heart disease based on various health-related features. The model is built using logistic regression and is implemented as an interactive web application using Streamlit. The app allows users to input their health information and receive a prediction regarding the presence or absence of heart disease.
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=soft&color=0:0b132b,50:1c4e80,100:0077b6&height=200&section=header&text=HEART%20DISEASE%20PREDICTION&fontSize=40&fontColor=ffffff&animation=fadeIn&fontAlignY=42&desc=Machine%20Learning%20Using%20Logistic%20Regression&descAlignY=64&descSize=18" width="100%" alt="Heart Disease Prediction"/>
+</p>
 
-## 📌Sneak Peek of Page :
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/Scikit--Learn-Logistic%20Regression-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white">
+  <img src="https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=for-the-badge&logo=pandas&logoColor=white">
+  <img src="https://img.shields.io/badge/Streamlit-Web%20App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white">
+</p>
 
-https://github.com/harshk04/Heart-disease-Prediction/assets/115946158/87246f1f-ba99-47d2-8684-1a2d6f8439e9
+<p align="center">
+  <strong>Predict the likelihood of heart disease using clinical and demographic health information.</strong>
+</p>
 
+---
 
-## Dataset 📊:
-The dataset used in this project is stored in a CSV file named `heartdisease.csv`. It contains several features related to individuals' health, such as age, sex, chest pain type, blood pressure, serum cholestoral, fasting blood sugar, resting electrocardiographic results, maximum heart rate achieved, exercise-induced angina, ST depression induced by exercise, slope of the peak exercise ST segment, number of major vessels colored by fluoroscopy, and thalassemia type. Any missing values in the dataset are removed before training the model.
+## 🫀 About The Project
 
-## Dependencies 🔧:
-To run this code, you need the following dependencies:
+**Heart Disease Prediction Using Logistic Regression** is a machine learning project that predicts whether a patient is likely to have heart disease based on health-related input features.
 
-Python 3.x
+The project uses **Logistic Regression** for binary classification and a **Streamlit** web application for interactive predictions.
 
-NumPy
+```text
+0 → No Heart Disease
+1 → Heart Disease
+```
 
-pandas
+> ⚠️ This project is intended for educational and internship purposes and should not be used as a medical diagnosis system.
 
-scikit-learn
+---
 
+## 🎯 Problem Statement
+
+The objective is to build a binary classification model that estimates the probability of a patient having or developing cardiovascular disease based on clinical and demographic risk factors.
+
+The model uses features such as:
+
+* Age
+* Sex
+* Chest Pain Type
+* Resting Blood Pressure
+* Cholesterol
+* Fasting Blood Sugar
+* Resting ECG
+* Maximum Heart Rate
+* Exercise-Induced Angina
+* ST Depression
+* Slope
+* Major Vessels
+* Thalassemia
+
+---
+
+## ⚙️ How It Works
+
+```text
+Patient Data
+     ↓
+Data Cleaning
+     ↓
+Feature / Target Separation
+     ↓
+Train-Test Split
+     ↓
+Logistic Regression
+     ↓
+Model Prediction
+     ↓
+Streamlit Application
+     ↓
+Heart Disease Result
+```
+
+---
+
+## 📊 Dataset
+
+The project uses a CSV dataset containing patient health information.
+
+The target column is:
+
+```text
+target
+```
+
+```text
+0 → No Heart Disease
+1 → Heart Disease
+```
+
+### Features
+
+| Feature  | Description                       |
+| -------- | --------------------------------- |
+| age      | Age of patient                    |
+| sex      | Gender                            |
+| cp       | Chest pain type                   |
+| trestbps | Resting blood pressure            |
+| chol     | Serum cholesterol                 |
+| fbs      | Fasting blood sugar               |
+| restecg  | Resting ECG result                |
+| thalach  | Maximum heart rate                |
+| exang    | Exercise-induced angina           |
+| oldpeak  | ST depression                     |
+| slope    | Slope of peak exercise ST segment |
+| ca       | Number of major vessels           |
+| thal     | Thalassemia type                  |
+| target   | Heart disease result              |
+
+---
+
+## 🧹 Data Preprocessing
+
+Duplicate records are checked and removed before training.
+
+```python
+df = df.drop_duplicates()
+```
+
+The input features and target are separated:
+
+```python
+x = df.drop(columns='target')
+y = df['target']
+```
+
+The dataset is divided into training and testing sets:
+
+```python
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, test_size=0.2, stratify=y, random_state=0
+)
+```
+
+```text
+80% → Training
+20% → Testing
+```
+
+---
+
+## 🤖 Machine Learning Model
+
+The project uses **Logistic Regression** from Scikit-Learn.
+
+```python
+lr = LogisticRegression()
+lr.fit(x_train, y_train)
+```
+
+Predictions are generated using:
+
+```python
+y_pred = lr.predict(x_test)
+```
+
+Logistic Regression is suitable because the target contains two classes:
+
+```text
+0 → No Disease
+1 → Disease
+```
+
+---
+
+## 📈 Model Performance
+
+The original project reports approximately:
+
+```text
+91.2% Accuracy
+```
+
+For a stronger evaluation, the project can also use:
+
+```text
+Accuracy
+Precision
+Recall
+F1-Score
+Confusion Matrix
+ROC-AUC
+```
+
+---
+
+## 🖥️ Streamlit Application
+
+The project includes an interactive Streamlit interface.
+
+### Main Sections
+
+```text
+🏠 Home Page
+❤️ Heart Disease Prediction
+📩 Contact Me
+```
+
+Users can enter patient information through the web interface and click:
+
+```text
+Predict Disease
+```
+
+The trained model then returns the prediction.
+
+---
+
+## 🔄 Prediction Flow
+
+```text
+User Input
+    ↓
+Create DataFrame
+    ↓
+Trained Logistic Regression Model
+    ↓
+Prediction
+    ↓
+0 / 1
+    ↓
+Display Result
+```
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology          | Purpose              |
+| ------------------- | -------------------- |
+| Python              | Programming          |
+| Pandas              | Data Processing      |
+| NumPy               | Numerical Operations |
+| Scikit-Learn        | Machine Learning     |
+| Logistic Regression | Classification Model |
+| Streamlit           | Web Application      |
+| Git & GitHub        | Version Control      |
+
+---
+
+## 📂 Project Structure
+
+```text
+Heart-Disease-Prediction/
+│
+├── model.py
+├── heartdisease.csv
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+---
+
+## ⚙️ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/venkatarahul07/Heart-Disease-Prediction.git
+cd Heart-Disease-Prediction
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv venv
+```
+
+Activate it on Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## ▶️ Run the Application
+
+```bash
+streamlit run model.py
+```
+
+The application will open in the browser at:
+
+```text
+http://localhost:8501
+```
+
+---
+
+## ✅ Advantages
+
+* Simple and easy-to-understand classification model
+* Fast model training
+* Suitable for binary classification
+* Interactive Streamlit interface
+* Easy to run and demonstrate
+* Useful for learning the complete ML workflow
+
+---
+
+## ⚠️ Limitations
+
+* Performance depends on the dataset.
+* The model may not represent real-world medical conditions.
+* Accuracy alone is not enough to evaluate a medical prediction system.
+* The project is not clinically validated.
+* It should not be used for medical diagnosis.
+
+---
+
+## 🚀 Future Scope
+
+Future improvements can include:
+
+* Feature scaling and feature selection
+* Cross-validation
+* Hyperparameter tuning
+* Confusion matrix and ROC-AUC visualization
+* Comparison with Random Forest, SVM, KNN and other models
+* Probability-based predictions
+* Improved Streamlit dashboard
+* Model deployment
+* Explainable AI techniques
+
+---
+
+## 🧪 Testing
+
+The project can be tested using:
+
+```text
+✓ Different patient inputs
+✓ Valid and invalid values
+✓ Boundary values
+✓ Model predictions
+✓ Streamlit application
+✓ Model evaluation metrics
+```
+
+---
+
+## 🎓 Learning Outcomes
+
+This project helps in understanding:
+
+```text
+Python
+   ↓
+Data Cleaning
+   ↓
+Data Preprocessing
+   ↓
+Supervised Learning
+   ↓
+Logistic Regression
+   ↓
+Model Evaluation
+   ↓
 Streamlit
+   ↓
+Machine Learning Application
+```
 
-You can install the required packages using the following command:
-`pip install numpy pandas scikit-learn streamlit`
+---
 
-## Model Training and Evaluation 📈:
-The model is trained using logistic regression, and the dataset is split into training and testing sets using the `train_test_split` function from scikit-learn. The model's accuracy is evaluated using the R-squared metric and displayed on the web application.
+## 👨‍💻 Author
 
-## Streamlit Web Application  💻:
-The Streamlit application consists of three main sections accessible from the sidebar:
+### VenkataRahul, Varun Reddy
 
-### Home Page 🏠:
-The landing page of the web application welcomes users to the "Heart Disease Prediction" section.
+**CSE — Artificial Intelligence**
 
-### Heart Disease Prediction 💓:
-In this section, users can input their health details such as age, sex, chest pain type, blood pressure, serum cholestoral, fasting blood sugar, resting electrocardiographic results, maximum heart rate achieved, exercise-induced angina, ST depression induced by exercise, slope of the peak exercise ST segment, number of major vessels colored by fluoroscopy, and thalassemia type.
+Machine Learning • Data Science • Python
 
-After providing the necessary inputs, users can click the "Predict Disease" button to get the model's prediction. If the prediction indicates that the person is fit and does not have any heart disease, a success message with the accuracy of the model (91.21%) is displayed. Otherwise, if the person is predicted to be suffering from heart disease, a relevant message is shown along with the model's accuracy.
+---
 
-## License
-This project is licensed under the MIT License. You are free to use, modify, and distribute the code for personal and commercial purposes. 📜🆓
+## ⚠️ Disclaimer
 
-## Acknowledgements
-I would like to express my gratitude to the open-source community for providing invaluable resources and inspiration for this project.🌟
+This project is developed for **educational and internship purposes**.
 
-## 📬 Contact Me
-If you want to contact me, you can reach me through the below handles.
+The prediction generated by this application should not be considered a medical diagnosis or a substitute for professional medical advice.
 
-&nbsp;&nbsp;<a href="https://www.linkedin.com/in/harsh-kumawat-069bb324b/"><img src="https://www.felberpr.com/wp-content/uploads/linkedin-logo.png" width="30"></img></a>
+---
 
-© 2023 Harsh
+## 📜 License
+
+This project is intended for educational purposes.
